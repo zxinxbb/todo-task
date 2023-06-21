@@ -5,7 +5,7 @@ const Todo = require("../models/todo")
 const getTodos = async (req, res) => {
     // find all items from a mongoose Model method 
     const items = await Todo.find({})
-    // respond with and object that has a message and the items from the DB
+    // respond with an object that has a message and the items from the DB
     res.json({
         message: "all items",
         todos: items

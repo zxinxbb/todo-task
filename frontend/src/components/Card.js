@@ -3,15 +3,21 @@ import { Link } from "react-router-dom"
 const Card = ({ todo, deleteHandler }) => {
 
     return (
-        <div>
+        <div >
+        <div className="items">
             <h3>{todo.text}</h3>
-            <button onClick={deleteHandler}>delete</button>
-            <Link
+           
+        </div>
+
+         <div className="del">
+        
+            <button  className="edi" onClick={()=>deleteHandler(todo)}>delete</button>
+            <Link  className="edi"
                 to={`/${todo._id}`} 
             >
             edit
-            </Link>
+            </Link></div>
         </div>
     )
 }
-export default Card
+export default Card 

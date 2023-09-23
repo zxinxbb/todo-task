@@ -3,12 +3,12 @@ const Navbar = () => {
     return (
         <div>
             <header>
-                <div>
-                    <Link to='/'>
-                        my list
+                <div className="nav" >
+                    <Link  className="navchild" style={{textDecoration: 'none'}}to='/'>
+                        My list
                     </Link>
-                    <Link to='/add-todo'>
-                        add item
+                    <Link  className="navchild" style={{textDecoration: 'none'}}to='/add-todo'>
+                        Add item
                     </Link>
                 </div>
             </header>

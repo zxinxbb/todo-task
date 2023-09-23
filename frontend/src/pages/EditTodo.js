@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import { getTodo } from "../api/getTodo"
 import { updateTodo } from "../api/updateTodo"
+
 const EditTodo = () => {
 
     const { id } = useParams()
@@ -9,29 +10,40 @@ const EditTodo = () => {
     const [userInput, setUserInput] = useState('')
 
     const submitHandler = async () => {
-        let obj = {
-            _id: toUpdate._id,
-            text: userInput
-        }
+            let obj = {
+                _id: toUpdate._id, // Assuming your API expects _id for identification
+            text: userInput,
+            }
+                let response = await updateTodo(obj)
+                console.log(response)
+                alert('edited item')
+       
 
-        alert('edited item')
-    }
+    } 
 
     useEffect(() => {
         const fetchTodo = async () => {
             let data = await getTodo(id)
             setToUpdate(data)
+           // console.log(getTodo)
         }
         fetchTodo()
     },[])
     return (
-        <div>
-            <h1>edit</h1>
-            <h2>{toUpdate.text}</h2>
+        <div className="items">
+            <h1>Edit:</h1>
+         <h1>{toUpdate.text}</h1>
+      
             <input 
-                onChange={() => {}}
+                type="text"
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                placeholder="insert text here"
             />
-            <button onClick={submitHandler}>submit</button>
+              <div className="button">
+     
+            <button className="edit" onClick={submitHandler}>submit</button>
+            </div>
         </div>
     )
 }

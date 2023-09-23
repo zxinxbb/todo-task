@@ -7,7 +7,11 @@ const Home = () => {
 
 
     const deleteHandler = async (todo) => {
-      
+        let response = await deleteTodo(todo)
+        console.log(response)
+        let updated= [...todos]
+        updated = updated.filter(items=> items._id !== response._id)
+        setTodos(updated)
     }
     useEffect(() => {
         const fetchTodos = async () => {
@@ -17,10 +21,11 @@ const Home = () => {
         }
         fetchTodos()
     }, [])
-
+ 
     if (!todos) return <h1>loading...</h1>
     return (
-        <div>
+        
+        <div className="container" >
             <>
                 {
                     todos ? todos.map((todo) => <Card key={todo._id} deleteHandler={deleteHandler} todo={todo}/>)
@@ -28,6 +33,7 @@ const Home = () => {
                 }
             </>
         </div>
+   
     );
 
 }

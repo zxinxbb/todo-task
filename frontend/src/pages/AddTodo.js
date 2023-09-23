@@ -1,17 +1,19 @@
 import { useState } from "react"
+import { addTodo } from "../api/addTodo"
 
 const AddTodo = () => {
     const [userInput, setUserInput] = useState("")
 
     const handler = async (e) => {
-        e.preventDefault()
+        e.preventDefault() // prevents the page from refreshing as then we will lose the state a
+
         // what function will run?
-        let response = await 
+        let response = await addTodo(userInput)
         console.log(response)
     }
 
     return (
-        <div>
+        <div className="items">
             <h1>
                 add item
             </h1>
@@ -19,9 +21,12 @@ const AddTodo = () => {
                 <input 
                 type="text"
                     value={userInput}
-                    onChange={() => {}}
+                    onChange={(e) => setUserInput(e.target.value)}
+                    placeholder="insert text here"
                 />
-                <button type="submit">submit</button>
+                <div className="button">
+                <button className="edit" type="submit">submit</button>
+                </div>
             </form>
         </div>
     )
